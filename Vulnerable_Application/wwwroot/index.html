@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vulnerable Booking App</title>
+</head>
+<body>
+
+<h1>Vulnerable Booking Application</h1>
+
+<h2>Register</h2>
+<input id="regUsername" placeholder="Username">
+<input id="regPassword" placeholder="Password">
+<button onclick="register()">Register</button>
+
+<h2>Login</h2>
+<input id="loginUsername" placeholder="Username">
+<input id="loginPassword" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<h2>Create Booking</h2>
+<input id="customerName" placeholder="Customer Name">
+<input id="serviceType" placeholder="Service Type">
+<input id="bookingDate" placeholder="Booking Date">
+<button onclick="createBooking()">Create Booking</button>
+
+<h2>Search Booking</h2>
+<input id="searchName" placeholder="Customer Name">
+<button onclick="searchBooking()">Search</button>
+
+<pre id="result"></pre>
+
+<script>
+async function register() {
+    const res = await fetch('/api/Auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: regUsername.value,
+            password: regPassword.value
+        })
+    });
+    result.textContent = await res.text();
+}
+
+async function login() {
+    const res = await fetch('/api/Auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: loginUsername.value,
+            password: loginPassword.value
+        })
+    });
+    result.textContent = await res.text();
+}
+
+async function createBooking() {
+    const res = await fetch('/api/Booking/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            customerName: customerName.value,
+            serviceType: serviceType.value,
+            bookingDate: bookingDate.value
+        })
+    });
+    result.textContent = await res.text();
+}
+
+async function searchBooking() {
+    const res = await fetch(`/api/Booking/search?customerName=${searchName.value}`);
+    result.textContent = await res.text();
+}
+</script>
+
+</body>
+</html>

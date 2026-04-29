@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Vulnerable_Application.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Vulnerable_Application.props",
+      "PackagePath": "build\\Vulnerable_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Vulnerable_Application.props",
+      "PackagePath": "buildMultiTargeting\\Vulnerable_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Vulnerable_Application.props",
+      "PackagePath": "buildTransitive\\Vulnerable_Application.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,44 +1,42 @@
+using Microsoft.Data.Sqlite;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
-app.UseHttpsRedirection();
+app.MapControllers();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+InitialiseDatabase();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+void InitialiseDatabase()
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    using var connection = new SqliteConnection("Data Source=vulnerable_app.db");
+    connection.Open();
+
+    var command = connection.CreateCommand();
+
+    command.CommandText =
+    @"
+    CREATE TABLE IF NOT EXISTS Users (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        Username TEXT NOT NULL,
+        Password TEXT NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS Bookings (
+        Id INTEGER PRIMARY KEY AUTOINCREMENT,
+        CustomerName TEXT NOT NULL,
+        ServiceType TEXT NOT NULL,
+        BookingDate TEXT NOT NULL
+    );
+    ";
+
+    command.ExecuteNonQuery();
 }

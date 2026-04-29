@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "/yG+1MHzGeq1bjhQzv8337/NUu7of5cWNABg9WgP5TA=",
+  "Source": "Vulnerable_Application",
+  "BasePath": "_content/Vulnerable_Application",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Vulnerable_Application\\wwwroot",
+      "Source": "Vulnerable_Application",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\",
+      "BasePath": "_content/Vulnerable_Application",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\index.html",
+      "SourceId": "Vulnerable_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\",
+      "BasePath": "_content/Vulnerable_Application",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
+}
