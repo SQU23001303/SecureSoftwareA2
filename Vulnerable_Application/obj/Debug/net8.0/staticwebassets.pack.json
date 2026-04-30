@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\app.js",
+      "PackagePath": "staticwebassets\\app.js"
+    },
+    {
       "Id": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },

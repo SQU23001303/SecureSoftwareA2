@@ -13,7 +13,12 @@ async function register() {
         })
     });
 
-    showResult(await res.text());
+    const text = await res.text();
+    showResult(text);
+
+    if (res.ok) {
+        clearFields(["regUsername", "regPassword"]);
+    }
 }
 
 async function login() {
@@ -26,7 +31,12 @@ async function login() {
         })
     });
 
-    showResult(await res.text());
+    const text = await res.text();
+    showResult(text);
+
+    if (res.ok) {
+        clearFields(["loginUsername", "loginPassword"]);
+    }
 }
 
 async function createBooking() {
@@ -40,7 +50,12 @@ async function createBooking() {
         })
     });
 
-    showResult(await res.text());
+    const text = await res.text();
+    showResult(text);
+
+    if (res.ok) {
+        clearFields(["customerName", "serviceType", "bookingDate"]);
+    }
 }
 
 async function searchBooking() {
@@ -48,4 +63,11 @@ async function searchBooking() {
 
     const res = await fetch(`/api/Booking/search?customerName=${name}`);
     showResult(await res.json());
+}
+
+function clearFields(ids) {
+    ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+    });
 }

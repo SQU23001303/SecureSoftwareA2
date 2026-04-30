@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/yG+1MHzGeq1bjhQzv8337/NUu7of5cWNABg9WgP5TA=",
+  "Hash": "mU7zgAOpIFOEPqzhegxx3PMbiNpmQKiSpyjcOHiFiyQ=",
   "Source": "Vulnerable_Application",
   "BasePath": "_content/Vulnerable_Application",
   "Mode": "Default",
@@ -16,6 +16,25 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\app.js",
+      "SourceId": "Vulnerable_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\",
+      "BasePath": "_content/Vulnerable_Application",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
     {
       "Identity": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\index.html",
       "SourceId": "Vulnerable_Application",

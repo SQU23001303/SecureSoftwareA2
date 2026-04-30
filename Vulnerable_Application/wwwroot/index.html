@@ -29,49 +29,6 @@
 
 <pre id="result"></pre>
 
-<script>
-async function register() {
-    const res = await fetch('/api/Auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            username: regUsername.value,
-            password: regPassword.value
-        })
-    });
-    result.textContent = await res.text();
-}
-
-async function login() {
-    const res = await fetch('/api/Auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            username: loginUsername.value,
-            password: loginPassword.value
-        })
-    });
-    result.textContent = await res.text();
-}
-
-async function createBooking() {
-    const res = await fetch('/api/Booking/create', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            customerName: customerName.value,
-            serviceType: serviceType.value,
-            bookingDate: bookingDate.value
-        })
-    });
-    result.textContent = await res.text();
-}
-
-async function searchBooking() {
-    const res = await fetch(`/api/Booking/search?customerName=${searchName.value}`);
-    result.textContent = await res.text();
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
