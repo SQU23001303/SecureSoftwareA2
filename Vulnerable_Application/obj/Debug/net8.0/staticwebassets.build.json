@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mU7zgAOpIFOEPqzhegxx3PMbiNpmQKiSpyjcOHiFiyQ=",
+  "Hash": "qQubqq71XyA834g4TxuSHZpJdSMdAV7LsnC2i2BKSMI=",
   "Source": "Vulnerable_Application",
   "BasePath": "_content/Vulnerable_Application",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\style.css",
+      "SourceId": "Vulnerable_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Vulnerable_Application\\wwwroot\\",
+      "BasePath": "_content/Vulnerable_Application",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
     }
   ]
 }
