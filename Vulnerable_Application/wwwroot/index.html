@@ -8,27 +8,42 @@
 
 <h1>Vulnerable Booking Application</h1>
 
-<h2>Register</h2>
-<input id="regUsername" placeholder="Username">
-<input id="regPassword" placeholder="Password">
-<button onclick="register()">Register</button>
+<section>
+    <h2>Register</h2>
+    <p class="vuln-note">Vulnerability: Plain text password storage</p>
+    <input id="regUsername" placeholder="Username">
+    <input id="regPassword" placeholder="Password">
+    <button onclick="register()">Register</button>
+</section>
 
-<h2>Login</h2>
-<input id="loginUsername" placeholder="Username">
-<input id="loginPassword" placeholder="Password">
-<button onclick="login()">Login</button>
+<section>
+    <h2>Login</h2>
+    <p class="vuln-note">Vulnerability: SQL injection</p>
+    <input id="loginUsername" placeholder="Username">
+    <input id="loginPassword" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <small>Test input: ' OR '1'='1</small>
+</section>
 
-<h2>Create Booking</h2>
-<input id="customerName" placeholder="Customer Name">
-<input id="serviceType" placeholder="Service Type">
-<input id="bookingDate" placeholder="Booking Date">
-<button onclick="createBooking()">Create Booking</button>
+<section>
+    <h2>Create Booking</h2>
+    <p class="vuln-note">Vulnerability: No input validation</p>
+    <input id="customerName" placeholder="Customer Name">
+    <input id="serviceType" placeholder="Service Type">
+    <input id="bookingDate" placeholder="Booking Date">
+    <button onclick="createBooking()">Create Booking</button>
+    <small>Try submitting empty fields.</small>
+</section>
 
-<h2>Search Booking</h2>
-<input id="searchName" placeholder="Customer Name">
-<button onclick="searchBooking()">Search</button>
+<section>
+    <h2>Search Booking</h2>
+    <p class="vuln-note">Vulnerability: SQL injection</p>
+    <input id="searchName" placeholder="Customer Name">
+    <button onclick="searchBooking()">Search</button>
+    <small>Test input: ' OR '1'='1</small>
+</section>
 
-<pre id="result"></pre>
+<p id="result"></p>
 
 <script src="app.js"></script>
 </body>
