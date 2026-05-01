@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1>Vulnerable Booking Application</h1>
+<h1>⚠️ Vulnerable Booking Application</h1>
 
 <section>
     <h2>Register</h2>
@@ -22,7 +22,7 @@
     <input id="loginUsername" placeholder="Username">
     <input id="loginPassword" placeholder="Password">
     <button onclick="login()">Login</button>
-    <small>Test input: ' OR '1'='1</small>
+    <small>Example test: ' OR '1'='1</small>
 </section>
 
 <section>
@@ -32,7 +32,7 @@
     <input id="serviceType" placeholder="Service Type">
     <input id="bookingDate" placeholder="Booking Date">
     <button onclick="createBooking()">Create Booking</button>
-    <small>Try submitting empty fields.</small>
+    <small>Try submitting empty or invalid values.</small>
 </section>
 
 <section>
@@ -40,10 +40,14 @@
     <p class="vuln-note">Vulnerability: SQL injection</p>
     <input id="searchName" placeholder="Customer Name">
     <button onclick="searchBooking()">Search</button>
-    <small>Test input: ' OR '1'='1</small>
+    <small>Example test: ' OR '1'='1</small>
 </section>
 
-<p id="result"></p>
+<section>
+    <h2>System Feedback</h2>
+    <p class="vuln-note">Vulnerability: Information disclosure (detailed error messages)</p>
+    <p id="result"></p>
+</section>
 
 <script src="app.js"></script>
 </body>
