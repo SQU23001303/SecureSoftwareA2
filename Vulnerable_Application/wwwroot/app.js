@@ -1,5 +1,5 @@
-function showResult(data) {
-    document.getElementById("result").textContent =
+function showResult(elementId, data) {
+    document.getElementById(elementId).textContent =
         typeof data === "string" ? data : JSON.stringify(data, null, 2);
 }
 
@@ -14,7 +14,7 @@ async function register() {
     });
 
     const text = await res.text();
-    showResult(text);
+    showResult("registerResult", text);
 
     if (res.ok) {
         clearFields(["regUsername", "regPassword"]);
@@ -32,7 +32,7 @@ async function login() {
     });
 
     const text = await res.text();
-    showResult(text);
+    showResult("loginResult", text);
 
     if (res.ok) {
         clearFields(["loginUsername", "loginPassword"]);
@@ -51,7 +51,7 @@ async function createBooking() {
     });
 
     const text = await res.text();
-    showResult(text);
+    showResult("bookingResult", text);
 
     if (res.ok) {
         clearFields(["customerName", "serviceType", "bookingDate"]);
@@ -61,8 +61,10 @@ async function createBooking() {
 async function searchBooking() {
     const name = document.getElementById("searchName").value;
 
-    const res = await fetch(`/api/Booking/search?customerName=${name}`);
-    showResult(await res.json());
+    const res = await fetch(`/api/Booking/search?customerName=${encodeURIComponent(name)}`);
+    const data = await res.json();
+
+    showResult("searchResult", data);
 }
 
 function clearFields(ids) {

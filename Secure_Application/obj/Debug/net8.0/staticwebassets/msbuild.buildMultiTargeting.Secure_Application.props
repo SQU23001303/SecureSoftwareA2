@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Secure_Application.props" />
+</Project>

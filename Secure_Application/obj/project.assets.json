@@ -466,9 +466,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SecureSoftwareA2\\Secure_Application\\Vulnerable_Application.csproj",
-      "projectName": "Vulnerable_Application",
-      "projectPath": "C:\\SecureSoftwareA2\\Secure_Application\\Vulnerable_Application.csproj",
+      "projectUniqueName": "C:\\SecureSoftwareA2\\Secure_Application\\Secure_Application.csproj",
+      "projectName": "Secure_Application",
+      "projectPath": "C:\\SecureSoftwareA2\\Secure_Application\\Secure_Application.csproj",
       "packagesPath": "C:\\Users\\Ben\\.nuget\\packages\\",
       "outputPath": "C:\\SecureSoftwareA2\\Secure_Application\\obj\\",
       "projectStyle": "PackageReference",

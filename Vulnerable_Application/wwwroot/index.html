@@ -2,53 +2,88 @@
 <html>
 <head>
     <title>Vulnerable Booking App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css?v=2">
 </head>
 <body>
 
-<h1>⚠️ Vulnerable Booking Application</h1>
+<h1>Vulnerable Booking Application</h1>
 
-<section>
-    <h2>Register</h2>
-    <p class="vuln-note">Vulnerability: Plain text password storage</p>
-    <input id="regUsername" placeholder="Username">
-    <input id="regPassword" placeholder="Password">
-    <button onclick="register()">Register</button>
-</section>
+<div class="page">
 
-<section>
-    <h2>Login</h2>
-    <p class="vuln-note">Vulnerability: SQL injection</p>
-    <input id="loginUsername" placeholder="Username">
-    <input id="loginPassword" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <small>Example test: ' OR '1'='1</small>
-</section>
+    <div class="column">
 
-<section>
-    <h2>Create Booking</h2>
-    <p class="vuln-note">Vulnerability: No input validation</p>
-    <input id="customerName" placeholder="Customer Name">
-    <input id="serviceType" placeholder="Service Type">
-    <input id="bookingDate" placeholder="Booking Date">
-    <button onclick="createBooking()">Create Booking</button>
-    <small>Try submitting empty or invalid values.</small>
-</section>
+        <section>
+            <h2>Register</h2>
+            <p class="vuln-note">Vulnerability: Plain text password storage</p>
 
-<section>
-    <h2>Search Booking</h2>
-    <p class="vuln-note">Vulnerability: SQL injection</p>
-    <input id="searchName" placeholder="Customer Name">
-    <button onclick="searchBooking()">Search</button>
-    <small>Example test: ' OR '1'='1</small>
-</section>
+            <input id="regUsername" placeholder="Username">
+            <input id="regPassword" placeholder="Password">
 
-<section>
-    <h2>System Feedback</h2>
-    <p class="vuln-note">Vulnerability: Information disclosure (detailed error messages)</p>
-    <p id="result"></p>
-</section>
+            <button onclick="register()">Register</button>
 
-<script src="app.js"></script>
+            <div class="feedback">
+                <h3>Feedback results</h3>
+                <p id="registerResult"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Login</h2>
+            <p class="vuln-note">Vulnerability: SQL injection</p>
+
+            <input id="loginUsername" placeholder="Username">
+            <input id="loginPassword" placeholder="Password">
+
+            <button onclick="login()">Login</button>
+            <small>Example test: ' OR '1'='1</small>
+
+            <div class="feedback">
+                <h3>Feedback results</h3>
+                <p id="loginResult"></p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="column">
+
+        <section>
+            <h2>Create Booking</h2>
+            <p class="vuln-note">Vulnerability: No input validation</p>
+
+            <input id="customerName" placeholder="Customer Name">
+            <input id="serviceType" placeholder="Service Type">
+            <input id="bookingDate" placeholder="Booking Date">
+
+            <button onclick="createBooking()">Create Booking</button>
+            <small>Try submitting empty or invalid values.</small>
+
+            <div class="feedback">
+                <h3>Feedback results</h3>
+                <p id="bookingResult"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Search Booking</h2>
+            <p class="vuln-note">Vulnerability: SQL injection</p>
+
+            <input id="searchName" placeholder="Customer Name">
+
+            <button onclick="searchBooking()">Search</button>
+            <small>Example test: ' OR '1'='1</small>
+
+            <div class="feedback">
+                <h3>Feedback results</h3>
+                <pre id="searchResult"></pre>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="/app.js?v=2"></script>
+
 </body>
 </html>
