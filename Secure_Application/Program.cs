@@ -23,6 +23,7 @@ CreateDatabase();
 
 app.Run();
 
+
 void CreateDatabase()
 {
     using var connection = new SqliteConnection("Data Source=secure.db");
