@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Booking App</title>
+    <link rel="stylesheet" href="/style.css?v=1">
+</head>
+<body>
+
+<h1>Secure Booking Application</h1>
+
+<div class="page">
+
+    <div class="column">
+
+        <section>
+            <h2>Register</h2>
+            <p class="secure-note">Security: Passwords are hashed before storage</p>
+
+            <input id="regUsername" placeholder="Username">
+            <input id="regPassword" type="password" placeholder="Password">
+
+            <button onclick="register()">Register</button>
+
+            <div class="feedback">
+                <p id="registerResult"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Login</h2>
+            <p class="secure-note">Security: Parameterised queries prevent SQL injection</p>
+
+            <input id="loginUsername" placeholder="Username">
+            <input id="loginPassword" type="password" placeholder="Password">
+
+            <button onclick="login()">Login</button>
+            <small>SQL injection test should fail: ' OR '1'='1</small>
+
+            <div class="feedback">
+                <p id="loginResult"></p>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="column">
+
+        <section>
+            <h2>Create Booking</h2>
+            <p class="secure-note">Security: Input validation prevents invalid submissions</p>
+
+            <input id="customerName" placeholder="Customer Name">
+            <input id="serviceType" placeholder="Service Type">
+            <input id="bookingDate" type="date">
+
+            <button onclick="createBooking()">Create Booking</button>
+            <small>Empty or invalid values should be rejected.</small>
+
+            <div class="feedback">
+                <p id="bookingResult"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Search Booking</h2>
+            <p class="secure-note">Security: Search uses parameterised queries</p>
+
+            <input id="searchName" placeholder="Customer Name">
+
+            <button onclick="searchBooking()">Search</button>
+            <small>SQL injection test should not return all records.</small>
+
+            <div class="feedback">
+                <pre id="searchResult"></pre>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="/app.js?v=1"></script>
+
+</body>
+</html>
