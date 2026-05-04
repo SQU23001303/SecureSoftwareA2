@@ -1,11 +1,77 @@
 {
   "Version": 1,
-  "Hash": "r8cdtsdFzkb1Db0+SMLprAR8cUE7WA07cbDr4pZb08U=",
+  "Hash": "kZW0SSutqz2TcMDFruW3566VvmXwzeszDvzlivV9+5s=",
   "Source": "Secure_Application",
   "BasePath": "_content/Secure_Application",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "Secure_Application\\wwwroot",
+      "Source": "Secure_Application",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\",
+      "BasePath": "_content/Secure_Application",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\app.js",
+      "SourceId": "Secure_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\",
+      "BasePath": "_content/Secure_Application",
+      "RelativePath": "app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.js"
+    },
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\index.html",
+      "SourceId": "Secure_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\",
+      "BasePath": "_content/Secure_Application",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\style.css",
+      "SourceId": "Secure_Application",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\",
+      "BasePath": "_content/Secure_Application",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ]
 }

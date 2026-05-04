@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\app.js",
+      "PackagePath": "staticwebassets\\app.js"
+    },
+    {
+      "Id": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\SecureSoftwareA2\\Secure_Application\\wwwroot\\style.css",
+      "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Secure_Application.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Secure_Application.props",
+      "PackagePath": "build\\Secure_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Secure_Application.props",
+      "PackagePath": "buildMultiTargeting\\Secure_Application.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Secure_Application.props",
+      "PackagePath": "buildTransitive\\Secure_Application.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

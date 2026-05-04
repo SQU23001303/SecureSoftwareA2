@@ -21,6 +21,11 @@ public class AuthController : ControllerBase
             return BadRequest("Username and password are required.");
         }
 
+        if (request.Username.Length < 3)
+        {
+            return BadRequest("Username must be at least 3 characters.");
+        }
+
         if (request.Password.Length < 8)
         {
             return BadRequest("Password must be at least 8 characters.");
@@ -31,7 +36,7 @@ public class AuthController : ControllerBase
             using var connection = new SqliteConnection(ConnectionString);
             connection.Open();
 
-            var passwordHash = HashPassword(request.Password);
+            string passwordHash = HashPassword(request.Password);
 
             var command = connection.CreateCommand();
             command.CommandText = @"
@@ -39,16 +44,16 @@ public class AuthController : ControllerBase
                 VALUES (@username, @passwordHash);
             ";
 
-            command.Parameters.AddWithValue("@username", request.Username);
+            command.Parameters.AddWithValue("@username", request.Username.Trim());
             command.Parameters.AddWithValue("@passwordHash", passwordHash);
 
             command.ExecuteNonQuery();
 
-            return Ok("User registered securely. Password was hashed before storage.");
+            return Ok("User registered securely.");
         }
         catch
         {
-            return BadRequest("Registration failed. Username may already exist.");
+            return BadRequest("Registration failed.");
         }
     }
 
@@ -61,40 +66,46 @@ public class AuthController : ControllerBase
             return BadRequest("Username and password are required.");
         }
 
-        using var connection = new SqliteConnection(ConnectionString);
-        connection.Open();
-
-        var command = connection.CreateCommand();
-        command.CommandText = @"
-            SELECT PasswordHash FROM Users
-            WHERE Username = @username;
-        ";
-
-        command.Parameters.AddWithValue("@username", request.Username);
-
-        var storedHash = command.ExecuteScalar()?.ToString();
-
-        if (storedHash == null)
+        try
         {
-            return Unauthorized("Invalid username or password.");
+            using var connection = new SqliteConnection(ConnectionString);
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT PasswordHash 
+                FROM Users
+                WHERE Username = @username;
+            ";
+
+            command.Parameters.AddWithValue("@username", request.Username.Trim());
+
+            var storedHash = command.ExecuteScalar()?.ToString();
+
+            if (storedHash == null)
+            {
+                return Unauthorized("Invalid username or password.");
+            }
+
+            string enteredHash = HashPassword(request.Password);
+
+            if (storedHash != enteredHash)
+            {
+                return Unauthorized("Invalid username or password.");
+            }
+
+            return Ok("Login successful.");
         }
-
-        var enteredHash = HashPassword(request.Password);
-
-        if (storedHash != enteredHash)
+        catch
         {
-            return Unauthorized("Invalid username or password.");
+            return BadRequest("Login failed.");
         }
-
-        return Ok("Login successful. SQL injection prevented using parameterised queries.");
     }
 
     private static string HashPassword(string password)
     {
         using var sha256 = SHA256.Create();
-
-        var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-
+        byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
         return Convert.ToBase64String(bytes);
     }
 }
