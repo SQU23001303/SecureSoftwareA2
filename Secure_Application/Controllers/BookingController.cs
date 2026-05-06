@@ -11,9 +11,11 @@ public class BookingController : ControllerBase
     private const string ConnectionString = "Data Source=secure.db";
 
     [HttpPost("create")]
-    public IActionResult CreateBooking(Booking booking)
+    public IActionResult CreateBooking([FromBody] Booking booking)
     {
-        if (string.IsNullOrWhiteSpace(booking.CustomerName) ||
+        // Manual validation (prevents framework error leaks)
+        if (booking == null ||
+            string.IsNullOrWhiteSpace(booking.CustomerName) ||
             string.IsNullOrWhiteSpace(booking.ServiceType) ||
             string.IsNullOrWhiteSpace(booking.BookingDate))
         {
@@ -36,13 +38,13 @@ public class BookingController : ControllerBase
                 VALUES (@customerName, @serviceType, @bookingDate);
             ";
 
-            command.Parameters.AddWithValue("@customerName", booking.CustomerName);
-            command.Parameters.AddWithValue("@serviceType", booking.ServiceType);
+            command.Parameters.AddWithValue("@customerName", booking.CustomerName.Trim());
+            command.Parameters.AddWithValue("@serviceType", booking.ServiceType.Trim());
             command.Parameters.AddWithValue("@bookingDate", booking.BookingDate);
 
             command.ExecuteNonQuery();
 
-            return Ok("Booking created securely. Input was validated before storage.");
+            return Ok("Booking created successfully.");
         }
         catch
         {
@@ -51,8 +53,9 @@ public class BookingController : ControllerBase
     }
 
     [HttpGet("search")]
-    public IActionResult SearchBooking(string customerName)
+    public IActionResult SearchBooking([FromQuery] string customerName)
     {
+        // Manual validation (prevents ASP.NET validation JSON leak)
         if (string.IsNullOrWhiteSpace(customerName))
         {
             return BadRequest("Customer name is required.");
@@ -70,7 +73,7 @@ public class BookingController : ControllerBase
                 WHERE CustomerName = @customerName;
             ";
 
-            command.Parameters.AddWithValue("@customerName", customerName);
+            command.Parameters.AddWithValue("@customerName", customerName.Trim());
 
             using var reader = command.ExecuteReader();
 
