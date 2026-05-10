@@ -1,0 +1,40 @@
+name: CodeQL Security Scan
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 9 * * 1'
+
+permissions:
+  security-events: write
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze C#
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: csharp
+          queries: security-extended
+
+      - name: Restore dependencies
+        run: dotnet restore SecureSoftwareA2.sln
+
+      - name: Build solution
+        run: dotnet build SecureSoftwareA2.sln --no-restore
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
