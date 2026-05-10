@@ -35,8 +35,9 @@ async function login() {
     showResult("loginResult", text);
 
     if (res.ok) {
-        clearFields(["loginUsername", "loginPassword"]);
-    }
+    document.getElementById("loginStatus").textContent = "Status: Logged in";
+    clearFields(["loginUsername", "loginPassword"]);
+}
 }
 
 async function createBooking() {

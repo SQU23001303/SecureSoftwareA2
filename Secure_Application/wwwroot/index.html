@@ -2,11 +2,13 @@
 <html>
 <head>
     <title>Secure Booking App</title>
-    <link rel="stylesheet" href="/style.css?v=1">
+    <link rel="stylesheet" href="/style.css?v=3">
 </head>
 <body>
 
 <h1>Secure Booking Application</h1>
+
+<p id="loginStatus">Status: Not logged in</p>
 
 <div class="page">
 
@@ -16,7 +18,10 @@
             <h2>Register</h2>
             <p class="secure-note">Security: Passwords are hashed before storage</p>
 
+            <label for="regUsername">Username</label>
             <input id="regUsername" placeholder="Username">
+
+            <label for="regPassword">Password</label>
             <input id="regPassword" type="password" placeholder="Password">
 
             <button onclick="register()">Register</button>
@@ -30,7 +35,10 @@
             <h2>Login</h2>
             <p class="secure-note">Security: Parameterised queries prevent SQL injection</p>
 
+            <label for="loginUsername">Username</label>
             <input id="loginUsername" placeholder="Username">
+
+            <label for="loginPassword">Password</label>
             <input id="loginPassword" type="password" placeholder="Password">
 
             <button onclick="login()">Login</button>
@@ -49,8 +57,19 @@
             <h2>Create Booking</h2>
             <p class="secure-note">Security: Input validation prevents invalid submissions</p>
 
+            <label for="customerName">Customer Name</label>
             <input id="customerName" placeholder="Customer Name">
-            <input id="serviceType" placeholder="Service Type">
+
+            <label for="serviceType">Service Type</label>
+            <select id="serviceType">
+                <option value="">Select Service Type</option>
+                <option value="House Move">House Move</option>
+                <option value="Office Move">Office Move</option>
+                <option value="Packing Service">Packing Service</option>
+                <option value="Storage">Storage</option>
+            </select>
+
+            <label for="bookingDate">Booking Date</label>
             <input id="bookingDate" type="date">
 
             <button onclick="createBooking()">Create Booking</button>
@@ -65,6 +84,7 @@
             <h2>Search Booking</h2>
             <p class="secure-note">Security: Search uses parameterised queries</p>
 
+            <label for="searchName">Customer Name</label>
             <input id="searchName" placeholder="Customer Name">
 
             <button onclick="searchBooking()">Search</button>
@@ -79,7 +99,7 @@
 
 </div>
 
-<script src="/app.js?v=1"></script>
+<script src="/app.js?v=3"></script>
 
 </body>
 </html>

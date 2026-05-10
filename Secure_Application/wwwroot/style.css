@@ -43,3 +43,28 @@ button {
     border: 1px solid #ccc;
     min-height: 20px;
 }
+
+input {
+    width: 80%;
+    padding: 8px;
+    margin: 0 auto 10px auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+label {
+    display: block;
+    text-align: left;
+    width: 80%;
+    margin: 8px auto 3px auto;
+    font-weight: bold;
+}
+
+
+select {
+    width: 80%;
+    padding: 8px;
+    margin: 0 auto 10px auto;
+    display: block;
+    box-sizing: border-box;
+}
