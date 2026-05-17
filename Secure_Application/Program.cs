@@ -40,6 +40,7 @@ void CreateDatabase()
 
         CREATE TABLE IF NOT EXISTS Bookings (
             Id INTEGER PRIMARY KEY AUTOINCREMENT,
+            Username TEXT NOT NULL,
             CustomerName TEXT NOT NULL,
             ServiceType TEXT NOT NULL,
             BookingDate TEXT NOT NULL

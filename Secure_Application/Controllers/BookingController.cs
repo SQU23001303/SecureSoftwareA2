@@ -13,8 +13,8 @@ public class BookingController : ControllerBase
     [HttpPost("create")]
     public IActionResult CreateBooking([FromBody] Booking booking)
     {
-        // Manual validation (prevents framework error leaks)
         if (booking == null ||
+            string.IsNullOrWhiteSpace(booking.Username) ||
             string.IsNullOrWhiteSpace(booking.CustomerName) ||
             string.IsNullOrWhiteSpace(booking.ServiceType) ||
             string.IsNullOrWhiteSpace(booking.BookingDate))
@@ -34,10 +34,11 @@ public class BookingController : ControllerBase
 
             var command = connection.CreateCommand();
             command.CommandText = @"
-                INSERT INTO Bookings (CustomerName, ServiceType, BookingDate)
-                VALUES (@customerName, @serviceType, @bookingDate);
+                INSERT INTO Bookings (Username, CustomerName, ServiceType, BookingDate)
+                VALUES (@username, @customerName, @serviceType, @bookingDate);
             ";
 
+            command.Parameters.AddWithValue("@username", booking.Username.Trim());
             command.Parameters.AddWithValue("@customerName", booking.CustomerName.Trim());
             command.Parameters.AddWithValue("@serviceType", booking.ServiceType.Trim());
             command.Parameters.AddWithValue("@bookingDate", booking.BookingDate);
@@ -52,13 +53,12 @@ public class BookingController : ControllerBase
         }
     }
 
-    [HttpGet("search")]
-    public IActionResult SearchBooking([FromQuery] string customerName)
+    [HttpGet("my-bookings")]
+    public IActionResult MyBookings([FromQuery] string username)
     {
-        // Manual validation (prevents ASP.NET validation JSON leak)
-        if (string.IsNullOrWhiteSpace(customerName))
+        if (string.IsNullOrWhiteSpace(username))
         {
-            return BadRequest("Customer name is required.");
+            return BadRequest("User must be logged in to view bookings.");
         }
 
         try
@@ -68,12 +68,12 @@ public class BookingController : ControllerBase
 
             var command = connection.CreateCommand();
             command.CommandText = @"
-                SELECT Id, CustomerName, ServiceType, BookingDate
+                SELECT Id, Username, CustomerName, ServiceType, BookingDate
                 FROM Bookings
-                WHERE CustomerName = @customerName;
+                WHERE Username = @username;
             ";
 
-            command.Parameters.AddWithValue("@customerName", customerName.Trim());
+            command.Parameters.AddWithValue("@username", username.Trim());
 
             using var reader = command.ExecuteReader();
 
@@ -84,22 +84,23 @@ public class BookingController : ControllerBase
                 bookings.Add(new
                 {
                     Id = reader.GetInt32(0),
-                    CustomerName = reader.GetString(1),
-                    ServiceType = reader.GetString(2),
-                    BookingDate = reader.GetString(3)
+                    Username = reader.GetString(1),
+                    CustomerName = reader.GetString(2),
+                    ServiceType = reader.GetString(3),
+                    BookingDate = reader.GetString(4)
                 });
             }
 
             if (bookings.Count == 0)
             {
-                return Ok("No bookings found.");
+                return Ok("No bookings found for this user.");
             }
 
             return Ok(bookings);
         }
         catch
         {
-            return BadRequest("Search could not be completed.");
+            return BadRequest("Bookings could not be loaded.");
         }
     }
 }
