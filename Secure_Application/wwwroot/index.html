@@ -53,46 +53,51 @@
 
     <div class="column">
 
-        <section>
-            <h2>Create Booking</h2>
-            <p class="secure-note">Security: Input validation prevents invalid submissions</p>
+        <div id="bookingArea" style="display:none;">
 
-            <label for="customerName">Customer Name</label>
-            <input id="customerName" placeholder="Customer Name">
+            <section>
+                <h2>Create Booking</h2>
+                <p class="secure-note">Security: Booking access requires authentication</p>
 
-            <label for="serviceType">Service Type</label>
-            <select id="serviceType">
-                <option value="">Select Service Type</option>
-                <option value="House Move">House Move</option>
-                <option value="Office Move">Office Move</option>
-                <option value="Packing Service">Packing Service</option>
-                <option value="Storage">Storage</option>
-            </select>
+                <label for="customerName">Customer Name</label>
+                <input id="customerName" placeholder="Customer Name">
 
-            <label for="bookingDate">Booking Date</label>
-            <input id="bookingDate" type="date">
+                <label for="serviceType">Service Type</label>
+                <select id="serviceType">
+                    <option value="">Select Service Type</option>
+                    <option value="House Move">House Move</option>
+                    <option value="Office Move">Office Move</option>
+                    <option value="Packing Service">Packing Service</option>
+                    <option value="Storage">Storage</option>
+                </select>
 
-            <button onclick="createBooking()">Create Booking</button>
-            <small>Empty or invalid values should be rejected.</small>
+                <label for="bookingDate">Booking Date</label>
+                <input id="bookingDate" type="date">
 
-            <div class="feedback">
-                <p id="bookingResult"></p>
-            </div>
-        </section>
+                <button onclick="createBooking()">Create Booking</button>
+                <small>Empty or invalid values should be rejected.</small>
 
-        <section>
-            <h2>Search Booking</h2>
-            <p class="secure-note">Security: Search uses parameterised queries</p>
+                <div class="feedback">
+                    <p id="bookingResult"></p>
+                </div>
+            </section>
 
-            <label for="searchName">Customer Name</label>
-            <input id="searchName" placeholder="Customer Name">
+            <section>
+                <h2>My Bookings</h2>
+                <p class="secure-note">Security: Users can only view bookings linked to their account</p>
 
-            <button onclick="searchBooking()">Search</button>
-            <small>SQL injection test should not return all records.</small>
+                <button onclick="loadMyBookings()">Refresh My Bookings</button>
 
-            <div class="feedback">
-                <pre id="searchResult"></pre>
-            </div>
+                <div class="feedback">
+                    <pre id="myBookingsResult"></pre>
+                </div>
+            </section>
+
+        </div>
+
+        <section id="loginRequiredMessage">
+            <h2>Booking Access Restricted</h2>
+            <p class="secure-note">Please log in to create or view bookings.</p>
         </section>
 
     </div>

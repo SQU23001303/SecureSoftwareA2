@@ -1,3 +1,5 @@
+let loggedInUser = null;
+
 function showResult(elementId, data) {
     document.getElementById(elementId).textContent =
         typeof data === "string" ? data : JSON.stringify(data, null, 2);
@@ -22,11 +24,13 @@ async function register() {
 }
 
 async function login() {
+    const username = document.getElementById("loginUsername").value;
+
     const res = await fetch('/api/Auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            username: document.getElementById("loginUsername").value,
+            username: username,
             password: document.getElementById("loginPassword").value
         })
     });
@@ -35,16 +39,30 @@ async function login() {
     showResult("loginResult", text);
 
     if (res.ok) {
-    document.getElementById("loginStatus").textContent = "Status: Logged in";
-    clearFields(["loginUsername", "loginPassword"]);
-}
+        loggedInUser = username;
+
+        document.getElementById("loginStatus").textContent =
+            "Status: Logged in as " + loggedInUser;
+
+        document.getElementById("bookingArea").style.display = "block";
+        document.getElementById("loginRequiredMessage").style.display = "none";
+
+        clearFields(["loginUsername", "loginPassword"]);
+        loadMyBookings();
+    }
 }
 
 async function createBooking() {
+    if (!loggedInUser) {
+        showResult("bookingResult", "You must be logged in to create a booking.");
+        return;
+    }
+
     const res = await fetch('/api/Booking/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+            username: loggedInUser,
             customerName: document.getElementById("customerName").value,
             serviceType: document.getElementById("serviceType").value,
             bookingDate: document.getElementById("bookingDate").value
@@ -56,19 +74,23 @@ async function createBooking() {
 
     if (res.ok) {
         clearFields(["customerName", "serviceType", "bookingDate"]);
+        loadMyBookings();
     }
 }
 
-async function searchBooking() {
-    const name = document.getElementById("searchName").value;
+async function loadMyBookings() {
+    if (!loggedInUser) {
+        showResult("myBookingsResult", "Please log in first.");
+        return;
+    }
 
-    const res = await fetch(`/api/Booking/search?customerName=${encodeURIComponent(name)}`);
+    const res = await fetch(`/api/Booking/my-bookings?username=${encodeURIComponent(loggedInUser)}`);
     const text = await res.text();
 
     try {
-        showResult("searchResult", JSON.parse(text));
+        showResult("myBookingsResult", JSON.parse(text));
     } catch {
-        showResult("searchResult", text);
+        showResult("myBookingsResult", text);
     }
 }
 
