@@ -80,18 +80,42 @@ async function createBooking() {
 
 async function loadMyBookings() {
     if (!loggedInUser) {
-        showResult("myBookingsResult", "Please log in first.");
+        document.getElementById("myBookingsResult").innerHTML = "Please log in first.";
         return;
     }
 
     const res = await fetch(`/api/Booking/my-bookings?username=${encodeURIComponent(loggedInUser)}`);
     const text = await res.text();
 
+    let data;
+
     try {
-        showResult("myBookingsResult", JSON.parse(text));
+        data = JSON.parse(text);
     } catch {
-        showResult("myBookingsResult", text);
+        document.getElementById("myBookingsResult").innerHTML = text;
+        return;
     }
+
+    if (!Array.isArray(data)) {
+        document.getElementById("myBookingsResult").innerHTML = data;
+        return;
+    }
+
+    let html = "";
+
+    data.forEach(booking => {
+        html += `
+            <div class="booking-card">
+                <strong>Booking #${booking.id}</strong><br>
+                Customer: ${booking.customerName}<br>
+                Service: ${booking.serviceType}<br>
+                Date: ${booking.bookingDate}
+            </div>
+            <hr>
+        `;
+    });
+
+    document.getElementById("myBookingsResult").innerHTML = html;
 }
 
 function clearFields(ids) {
